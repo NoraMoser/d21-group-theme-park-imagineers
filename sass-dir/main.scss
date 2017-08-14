@@ -6,8 +6,13 @@
 
 
 #map-grid {
-	background-color: red;
-	width: 100%;
-	height: 200px;
+	background-color: #999999;
 }
-	
+
+// Ted: Keep the grid boxes close to square (1:1 aspect ratio), and handle overflow w/ scroll.
+.grid-box-styling {
+	border: 1px solid black;
+	height: 30vh;
+	width: 20vw;
+	overflow: scroll;
+}
