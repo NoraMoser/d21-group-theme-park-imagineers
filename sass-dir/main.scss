@@ -9,6 +9,68 @@
 	background-color: #999999;
 }
 
+
+//Eric: Dropdown Time Select Radio Styling - EDIT
+
+form { 
+	max-width: 200px;
+}
+.btn { 
+	//change coloring
+  padding:6px; width:100%; border-radius:2px;
+  background-color:#fff; color:#333;
+	border:1px solid #777;  text-align:left; 
+}
+.btn-select { 
+	position:relative;
+}
+
+.btn-select:after {
+  content:"";
+  display: block; 
+	position:absolute; 
+	top:50%; 
+	right:10px; 
+	margin-top:-2px;  
+  width: 0;
+  height: 0;
+  border-top: 4px solid #777;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.dropdown-menu-select { 
+	padding:0; 
+	margin-top:-2px; 
+	width:100%; 
+	border-radius:0 0 2px 2px; 
+	border-color:#777;
+}
+
+.dropdown-radio { 
+	display:block; 
+	position:relative;
+  margin:0;
+	width:100%; 
+	overflow:hidden;
+  border-bottom:1px solid #eaeaea; 
+  cursor:pointer;
+}
+.dropdown-radio input { 
+  visibility: hidden; 
+	position:absolute; 
+	left: -30px; 
+}
+
+.dropdown-radio i { 
+	font-weight:normal; 
+	font-style:normal; 
+	display:block; 
+	padding:7px; }
+
+
+/***************************************************/
+
 // Ted: Keep the grid boxes close to square (1:1 aspect ratio), and handle overflow w/ scroll.
 .grid-box-styling {
 	border: 1px solid black;

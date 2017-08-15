@@ -32,6 +32,10 @@ Attractory.loadAreas = () => {
 		});
 	});
 };
+ 
+
+//Eric: Load the 
+
 
 
 module.exports = Attractory;
