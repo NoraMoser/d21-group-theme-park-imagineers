@@ -63,6 +63,13 @@ function populateAreas(areasData) {
 	}
 }
 
+
+var today = new Date(); 
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var output = document.getElementById("currentTime");
+
+output.innerHTML = date;
+
 //This is calling the loadAttractions to get data for all 131 attractions
 imaginationFactory.loadAttractions()
 .then(
