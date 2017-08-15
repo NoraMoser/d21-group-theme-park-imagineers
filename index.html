@@ -41,7 +41,21 @@
 
 		<div class="row">
 			<div id="attraction-column" class="col-md-4">ATTRACTIONS</div>
-			<div id="map-grid" class="col-md-8">THEME PARK MAP</div>
+			<!-- Ted: Map Grid: To allow for a displayed grid of 9 boxes but with center one empty, class "grid-box-data" is used to populate the data in all but center box, and class "grid-box-styling" is used to style all grid boxes the same, including the empty one. -->
+			<div id="map-grid" class="col-md-8">THEME PARK MAP
+				<div class="row justify-content-around">
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--1">Grid Box 1</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--2">Grid Box 2</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--3">Grid Box 3</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--4">Grid Box 4</div>
+					<div class="col-4 grid-box-styling" id="grid--empty"></div> <!--This is the empty grid box in center -->
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--5">Grid Box 5</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--6">Grid Box 6</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--7">Grid Box 7</div>
+					<div class="col-4 grid-box-data grid-box-styling" id="grid--8">Grid Box 8 (Empty until we create area 8)</div>
+				</div>
+
+			</div>
 		</div>
 
 		<div class="row">
