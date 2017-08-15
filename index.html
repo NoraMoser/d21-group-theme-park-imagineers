@@ -16,34 +16,93 @@
   		</form>
 	</nav>
 	<div class="container-fluid">
-		<div class="row">
+		<form id="time-select-form">
 			<div class="dropdown">
-			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Dropdown button
-			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			  	<a class="dropdown-item" href="#">8:00 A.M.</a>
-			    <a class="dropdown-item" href="#">9:00 A.M.</a>
-			    <a class="dropdown-item" href="#">10:00 A.M.</a>
-			    <a class="dropdown-item" href="#">11:00 A.M.</a>
-			    <a class="dropdown-item" href="#">12:00 P.M.</a>
-			    <a class="dropdown-item" href="#">1:00 P.M.</a>
-			    <a class="dropdown-item" href="#">2:00 P.M.</a>
-			    <a class="dropdown-item" href="#">3:00 P.M.</a>
-			    <a class="dropdown-item" href="#">4:00 P.M.</a>
-			    <a class="dropdown-item" href="#">5:00 P.M.</a>
-			    <a class="dropdown-item" href="#">6:00 P.M.</a>
-			    <a class="dropdown-item" href="#">7:00 P.M.</a>
-			    <a class="dropdown-item" href="#">8:00 P.M.</a>
-			  </div>
+				<button type="button" class="btn btn-select" data-toggle="dropdown">Times:</button>
+				<ul class="dropdown-menu dropdown-menu-select">
+					<li><label class="dropdown-radio">
+							<input type="radio" value="9" name="time-select">
+							<i>9:00 A.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="10" name="time-select">
+							<i>10:00 A.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="11" name="time-select">
+							<i>11:00 A.M.</i>
+							</label>
+					</li>
+						<li><label class="dropdown-radio">
+							<input type="radio" value="12" name="time-select">
+							<i>12:00 P.M.</i>
+							</label>
+					</li>
+						<li><label class="dropdown-radio">
+							<input type="radio" value="13" name="time-select">
+							<i>1:00 P.M.</i>
+							</label>
+					</li>
+						<li><label class="dropdown-radio">
+							<input type="radio" value="14" name="time-select">
+							<i>2:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="15" name="time-select">
+							<i>3:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="16" name="time-select">
+							<i>4:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="17" name="time-select">
+							<i>5:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="18" name="time-select">
+							<i>6:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="19" name="time-select">
+							<i>7:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="20" name="time-select">
+							<i>8:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="21" name="time-select">
+							<i>9:00 P.M.</i>
+							</label>
+					</li>
+					<li><label class="dropdown-radio">
+							<input type="radio" value="22" name="time-select">
+							<i>10:00 P.M.</i>
+							</label>
+					</li>
+				</ul>
 			</div>
-		</div>
+		</form>
+
 
 		<div class="row">
 			<div id="attraction-column" class="col-md-4">ATTRACTIONS</div>
+			
+
+
 			<!-- Ted: Map Grid: To allow for a displayed grid of 9 boxes but with center one empty, class "grid-box-data" is used to populate the data in all but center box, and class "grid-box-styling" is used to style all grid boxes the same, including the empty one. -->
 			<div id="map-grid" class="col-md-8">THEME PARK MAP
-				<div class="row justify-content-around">
+			<div class="row justify-content-around">
 					<div class="col-4 grid-box-data grid-box-styling" id="grid--1">Grid Box 1</div>
 					<div class="col-4 grid-box-data grid-box-styling" id="grid--2">Grid Box 2</div>
 					<div class="col-4 grid-box-data grid-box-styling" id="grid--3">Grid Box 3</div>
@@ -54,7 +113,6 @@
 					<div class="col-4 grid-box-data grid-box-styling" id="grid--7">Grid Box 7</div>
 					<div class="col-4 grid-box-data grid-box-styling" id="grid--8">Grid Box 8 (Empty until we create area 8)</div>
 				</div>
-
 			</div>
 		</div>
 

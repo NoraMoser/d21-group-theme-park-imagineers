@@ -12,7 +12,7 @@ Attractory.loadData = () => {
 
 		dataLoader.addEventListener("load", function () {
 			let data = JSON.parse(this.responseText);
-			console.log ("data from json", data);
+			// console.log ("data from json", data);
 			resolve(data);
 		});
 	});
@@ -27,11 +27,29 @@ Attractory.loadAreas = () => {
 
 		dataLoader.addEventListener("load", function () {
 			let data = JSON.parse(this.responseText);
-			console.log ("areas data on load", data);
+			// console.log ("areas data on load", data);
 			resolve(data);
 		});
 	});
 };
+ 
 
+//Eric: Load the 
+
+
+//Tyler: Load the specific attractions from firebase
+Attractory.loadAttractions = () => {
+	return new Promise ( function (resolve, reject) {
+		let attractionDataLoader = new XMLHttpRequest();
+		attractionDataLoader.open("GET", "https://imagine-nation-data.firebaseio.com/attractions.json");
+		attractionDataLoader.send();
+
+		attractionDataLoader.addEventListener("load", function () {
+			let data = JSON.parse(this.responseText);
+			// console.log ("attractions data on load", data);
+			resolve(data);
+		});
+	});
+};
 
 module.exports = Attractory;
