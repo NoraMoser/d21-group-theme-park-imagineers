@@ -34,9 +34,6 @@ Attractory.loadAreas = () => {
 };
  
 
-//Eric: Load the 
-
-
 //Tyler: Load the specific attractions from firebase
 Attractory.loadAttractions = () => {
 	return new Promise ( function (resolve, reject) {
