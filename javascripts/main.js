@@ -41,3 +41,9 @@ function populateAreas(areasData) {
 
 	}
 }
+
+var today = new Date(); 
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var output = document.getElementById("currentTime");
+
+output.innerHTML = date;

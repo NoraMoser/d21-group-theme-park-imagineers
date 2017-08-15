@@ -9,13 +9,7 @@
 	background-color: #999999;
 }
 
-<<<<<<< HEAD
-#theme-logo {
-	height: 150px;
-	width: 150px;
-}
-	
-=======
+
 // Ted: Keep the grid boxes close to square (1:1 aspect ratio), and handle overflow w/ scroll.
 .grid-box-styling {
 	border: 1px solid black;
@@ -23,4 +17,27 @@
 	width: 20vw;
 	overflow: scroll;
 }
->>>>>>> master
+//Header
+
+#theme-logo {
+	height: 160px;
+	width: 190px;
+	margin-top: -15px;
+}
+
+.form-inline {
+	margin: auto;
+}
+
+#nav-bar {
+	background-color: #2DB1FF;
+}
+
+#search-btn {
+	color: #FFA50B;
+}
+
+//Footer
+#currentTime {
+	margin-left: 27%;
+}
