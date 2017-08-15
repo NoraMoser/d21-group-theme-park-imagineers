@@ -1,8 +1,8 @@
 {{#each this}}
 
-	<section id="attraction--{{@index}}" class="all-attractions" style="background-color: {{color}}">
+	<section id="attraction--{{@index}}" class="all-attractions">
 	<h3>{{name}}</h3>
-	<p class="attr-copy">{{description}}</p>
+	<p class="attr-copy">(<a href="#">{{findAreaName area_id}}</a>)</p>
 	</section>
 
 {{/each}}
