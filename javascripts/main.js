@@ -4,6 +4,11 @@ console.log ("main.js");
 let imaginationFactory = require('../javascripts/imagination-factory.js');
 let Handlebars = require('hbsfy/runtime');
 let attractionTemplate = require("../templates/attractionlist.hbs");
+let moment =require("../lib/node_modules/moment/min/moment.min.js");
+
+var attractionsWithTimes = [];
+var attractionsPushedToDOM = [];
+
 
 Handlebars.registerHelper("findAreaName", (value) => {
   switch (value) {
@@ -63,32 +68,12 @@ function populateAreas(areasData) {
 	}
 }
 
-
+// Current Date
 var today = new Date(); 
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var output = document.getElementById("currentTime");
 
 output.innerHTML = date;
-
-//This is calling the loadAttractions to get data for all 131 attractions
-imaginationFactory.loadAttractions()
-.then(
-    (dataFromFactory) => {
-        // console.log("attractions", dataFromFactory);
-        populatePage(dataFromFactory);
-    },
-    (reject) => {
-        console.log("something went wrong");
-    });
-
-
-function populatePage(factoryData) {
-    console.log ("factoryData from popPage", factoryData);
-    let newDiv = document.createElement("div");
-    newDiv.innerHTML = attractionTemplate(factoryData);
-    $("#attraction-column").append(newDiv);
-}
-
 
 //TIME DROP DOWN
 
@@ -104,4 +89,74 @@ $('.dropdown-radio').find('input').change(function() {
   //retrieve the checked value 
   var timeValue = timeDropdown.find( checked ).val();
   console.log('timeValue', timeValue);
+  var selectedTime = moment(timeValue, "hh:mm a");
+  console.log('selectedTime', selectedTime);
+  selectedTimeUmCrapTimesOrSumthin(selectedTime);
+  
 });
+
+
+function selectedTimeUmCrapTimesOrSumthin(time){
+    attractionsPushedToDOM = [];
+    $("#attraction-column").html('');
+    for (let k = 0; k < attractionsWithTimes.length; k++) {
+                for( let g = 0; g < attractionsWithTimes[k].times.length; g++ ){
+                   // console.log('attractionsWithTimes[k].times[g]', attractionsWithTimes[k].name, attractionsWithTimes[k].times[g]);
+                    if(moment(attractionsWithTimes[k].times[g], "hh:mm a").isBetween(moment(time),moment(time).add(1,"h")) === true){
+                    attractionsPushedToDOM.push(attractionsWithTimes[k]);            
+                    }
+            }
+    } 
+    populatePage(attractionsPushedToDOM);
+    console.log('attractionsPushedToDOM', attractionsPushedToDOM);
+    
+    console.log('something is happening');
+    
+}
+
+function populatePage(factoryData) {
+    let newDiv = document.createElement("div");
+    newDiv.innerHTML = attractionTemplate(factoryData);
+    $("#attraction-column").append(newDiv);
+    console.log('factoryData', factoryData);
+    
+}
+
+//This is calling the loadAttractions to get data for all 131 attractions
+imaginationFactory.loadAttractions()
+.then(
+    (dataFromFactory) => {
+        // console.log("attractions", dataFromFactory);
+        for (let i = 0; i < dataFromFactory.length; i++) {
+            if(dataFromFactory[i].times){
+                attractionsWithTimes.push(dataFromFactory[i]);
+            }
+        }
+        for (let k = 0; k < attractionsWithTimes.length; k++) {
+            for( let g = 0; g < attractionsWithTimes[k].times.length; g++ ){
+                if(moment(attractionsWithTimes[k].times[g], "hh:mm a").isBetween(moment(),moment().add(1,"h")) === true){
+                   attractionsPushedToDOM.push(attractionsWithTimes[k]);            
+                }
+           }
+        }     
+        populatePage(attractionsPushedToDOM);
+
+    },
+    (reject) => {
+        console.log("something went wrong");
+    });
+
+ 
+
+
+//console.log(moment().format('LT'));
+
+// console.log(moment("10:01AM", "hh:mm a").format('LT'));
+
+// var timeEntered = "10:00pm";
+
+// var availTimeArr = ["10:00pm", "10:30pm", "10:45pm", "10:30am","11:00pm","11:01pm"];
+// var availTimeArrFORM = moment(availTimeArr,"hh:mm a");
+
+// var timeEntMomentForm = moment(timeEntered,"hh:mm a");
+
