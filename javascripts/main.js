@@ -41,3 +41,20 @@ function populateAreas(areasData) {
 
 	}
 }
+
+
+//TIME DROP DOWN
+
+$('.dropdown-radio').find('input').change(function() {
+  var timeDropdown = $('.dropdown');
+  var radioname = $(this).attr('name');
+  var checked = 'input[name=' + radioname + ']:checked';
+  
+  //update the text
+  var checkedText = $(checked).closest('.dropdown-radio').text();
+  timeDropdown.find('button').text( checkedText );
+
+  //retrieve the checked value 
+  var timeValue = timeDropdown.find( checked ).val();
+  console.log('timeValue', timeValue);
+});
