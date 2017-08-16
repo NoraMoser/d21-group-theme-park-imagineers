@@ -228,6 +228,14 @@ imaginationFactory.loadAttractions()
         console.log("factory data", dataFromFactory);
         populatePage(result);
         console.log("After PP", result);
+
+        
+        $(".grid-box-data").removeClass("selected-border"); 
+
+        for(let i = 0; i < result.length; i++){
+            $(`#grid--${result[i].area_id}`).addClass("selected-border");
+        }
+
         result = [];
 
     },
@@ -235,7 +243,6 @@ imaginationFactory.loadAttractions()
         console.log("something went wrong");
     });
     
-
 }
 
 
