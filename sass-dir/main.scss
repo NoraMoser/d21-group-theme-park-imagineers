@@ -78,7 +78,6 @@ form {
 	width: 20vw;
 	overflow: scroll;
 }
-
 //Header
 
 #theme-logo {
@@ -89,6 +88,15 @@ form {
 
 .form-inline {
 	margin: auto;
+	display: inline;
+}
+
+#search-btn {
+	width: 65px;
+}
+
+#search-input {
+	width: 200px;
 }
 
 #nav-bar {
