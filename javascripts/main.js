@@ -159,4 +159,3 @@ imaginationFactory.loadAttractions()
 // var availTimeArrFORM = moment(availTimeArr,"hh:mm a");
 
 // var timeEntMomentForm = moment(timeEntered,"hh:mm a");
-
