@@ -8,7 +8,7 @@ let moment =require("../lib/node_modules/moment/min/moment.min.js");
 
 var attractionsWithTimes = [];
 var attractionsPushedToDOM = [];
-
+var attractionList = [];
 
 Handlebars.registerHelper("findAreaName", (value) => {
   switch (value) {
@@ -103,7 +103,8 @@ function selectedTimeUmCrapTimesOrSumthin(time){
                 for( let g = 0; g < attractionsWithTimes[k].times.length; g++ ){
                    // console.log('attractionsWithTimes[k].times[g]', attractionsWithTimes[k].name, attractionsWithTimes[k].times[g]);
                     if(moment(attractionsWithTimes[k].times[g], "hh:mm a").isBetween(moment(time),moment(time).add(1,"h")) === true){
-                    attractionsPushedToDOM.push(attractionsWithTimes[k]);            
+                        attractionsPushedToDOM.push(attractionsWithTimes[k]);
+                        break;
                     }
             }
     } 
@@ -113,6 +114,37 @@ function selectedTimeUmCrapTimesOrSumthin(time){
     console.log('something is happening');
     
 }
+//Return ID on area clicked and populate Attraction list
+$('#map-grid').click(function(event){
+    var mapGridChildren = $(".grid-box-data");
+    mapGridChildren.removeClass("selected-border");
+    
+    console.log('mapGridChildren', mapGridChildren);
+
+    var areaClicked = event.target.closest('.grid-box-data').getAttribute('id').slice(6);
+    event.target.closest('.grid-box-data').classList.add("selected-border");
+    imaginationFactory.loadAttractions()
+        .then(
+            (dataFromFactory) => {
+                attractionsPushedToDOM = [];
+                $("#attraction-column").html('');
+                // console.log("attractions", dataFromFactory);
+                for (let i = 0; i < dataFromFactory.length; i++) {
+                    if(dataFromFactory[i].area_id == areaClicked){
+                        attractionsPushedToDOM.push(dataFromFactory[i]);
+                    }
+                }     
+                populatePage(attractionsPushedToDOM);
+
+            },
+            (reject) => {
+                console.log("something went wrong");
+            });
+    
+});
+
+
+
 
 function populatePage(factoryData) {
     let newDiv = document.createElement("div");
@@ -126,6 +158,8 @@ function populatePage(factoryData) {
 imaginationFactory.loadAttractions()
 .then(
     (dataFromFactory) => {
+        attractionsPushedToDOM = [];
+        $("#attraction-column").html('');
         // console.log("attractions", dataFromFactory);
         for (let i = 0; i < dataFromFactory.length; i++) {
             if(dataFromFactory[i].times){
@@ -135,7 +169,8 @@ imaginationFactory.loadAttractions()
         for (let k = 0; k < attractionsWithTimes.length; k++) {
             for( let g = 0; g < attractionsWithTimes[k].times.length; g++ ){
                 if(moment(attractionsWithTimes[k].times[g], "hh:mm a").isBetween(moment(),moment().add(1,"h")) === true){
-                   attractionsPushedToDOM.push(attractionsWithTimes[k]);            
+                    attractionsPushedToDOM.push(attractionsWithTimes[k]);
+                    break;
                 }
            }
         }     
@@ -145,18 +180,3 @@ imaginationFactory.loadAttractions()
     (reject) => {
         console.log("something went wrong");
     });
-
- 
-
-
-//console.log(moment().format('LT'));
-
-// console.log(moment("10:01AM", "hh:mm a").format('LT'));
-
-// var timeEntered = "10:00pm";
-
-// var availTimeArr = ["10:00pm", "10:30pm", "10:45pm", "10:30am","11:00pm","11:01pm"];
-// var availTimeArrFORM = moment(availTimeArr,"hh:mm a");
-
-// var timeEntMomentForm = moment(timeEntered,"hh:mm a");
-

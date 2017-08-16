@@ -1,7 +1,7 @@
-#attraction-column {
-	background-color: green;
+#attraction-column-parent {
 	width: 100%;
-	height: 200px;
+	height: 95vh;
+	overflow: scroll;
 }
 
 
@@ -11,7 +11,7 @@
 
 //Eric: Dropdown Time Select Radio Styling - EDIT
 
-form { 
+#time-select-form { 
 	max-width: 200px;
 }
 .btn { 
@@ -76,6 +76,13 @@ form {
 	height: 30vh;
 	width: 20vw;
 	overflow: scroll;
+}
+
+.selected-border{
+	border: 1px solid red;
+	-webkit-box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
+	-moz-box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
+	box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
 }
 //Header
 
