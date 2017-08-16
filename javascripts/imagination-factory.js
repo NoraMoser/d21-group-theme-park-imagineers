@@ -32,6 +32,20 @@ Attractory.loadAreas = () => {
 		});
 	});
 };
+
+Attractory.loadTypes = () => {
+	return new Promise ( function (resolve, reject) {
+		let dataLoader = new XMLHttpRequest();
+		dataLoader.open("GET", "https://imagine-nation-data.firebaseio.com/attraction_types.json");
+		dataLoader.send();
+
+		dataLoader.addEventListener("load", function () {
+			let data = JSON.parse(this.responseText);
+			// console.log ("areas data on load", data);
+			resolve(data);
+		});
+	});
+};
  
 
 //Tyler: Load the specific attractions from firebase

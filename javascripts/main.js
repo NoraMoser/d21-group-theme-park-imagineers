@@ -5,6 +5,7 @@ let imaginationFactory = require('../javascripts/imagination-factory.js');
 let Handlebars = require('hbsfy/runtime');
 let attractionTemplate = require("../templates/attractionlist.hbs");
 let moment =require("../lib/node_modules/moment/min/moment.min.js");
+let Fuse = require("../lib/node_modules/fuse.js/dist/fuse.min.js");
 
 var attractionsWithTimes = [];
 var attractionsPushedToDOM = [];
@@ -26,6 +27,27 @@ Handlebars.registerHelper("findAreaName", (value) => {
         return "Tomorrowland";
     case 7:
         return "Cinderella Castle";
+    }
+});
+
+Handlebars.registerHelper("findType", (value) => {
+  switch (value) {
+    case 1:
+        return "Ride.";
+    case 2:
+        return "Restaurant";
+    case 3:
+        return "Show";
+    case 4:
+        return "Vendor";
+    case 5:
+        return "Character Meet";
+    case 6:
+        return "Animals";
+    case 7:
+        return "Game";
+    case 8:
+        return "Special Event";
     }
 });
     
@@ -51,6 +73,7 @@ imaginationFactory.loadAreas()
     (reject) => {
         console.log("something went wrong");
     });
+
 
 // Takes the data loaded above and populates the grid with names/descriptions, and changes background color based on colorTheme.
 function populateAreas(areasData) {
@@ -151,6 +174,12 @@ function populatePage(factoryData) {
     newDiv.innerHTML = attractionTemplate(factoryData);
     $("#attraction-column").append(newDiv);
     console.log('factoryData', factoryData);
+
+    $(".card").click(function(e){
+    console.log("seent");
+    $(".seent").addClass("hidden");
+    $(e.currentTarget).find(".seent").removeClass("hidden");
+});
     
 }
 
@@ -180,3 +209,69 @@ imaginationFactory.loadAttractions()
     (reject) => {
         console.log("something went wrong");
     });
+
+//This is the search button using fuse module.
+$("#search-input").keypress(function(e){
+    if(e.which == 13) {
+         $("#attraction-column").html('');
+        searchFunction();
+    }
+});
+
+$("#search-input").focus(function(e){
+    $(this).val("");
+});
+
+$("#search-btn").click(function(e){
+    $("#attraction-column").html('');
+    searchFunction();
+
+});
+
+function searchFunction(){
+
+imaginationFactory.loadAttractions()
+.then(
+    (dataFromFactory) => {
+        // console.log("factory promise", dataFromFactory);
+        let searchTerm = $("#search-input").val();
+        console.log("searchTerm", searchTerm);
+        var options = {
+            tokenize: true,
+            shouldSort: true,
+            threshold: 0.0,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 1,
+            keys: [
+                "name"
+                   ]
+        };
+
+        var fusejs = new Fuse(dataFromFactory, options);
+        var result = fusejs.search(searchTerm);
+
+        console.log("factory data", dataFromFactory);
+        populatePage(result);
+        console.log("After PP", result);
+
+        
+        $(".grid-box-data").removeClass("selected-border"); 
+
+        for(let i = 0; i < result.length; i++){
+            $(`#grid--${result[i].area_id}`).addClass("selected-border");
+        }
+
+        result = [];
+
+    },
+    (reject) => {
+        console.log("something went wrong");
+    });
+    
+}
+
+
+
+
