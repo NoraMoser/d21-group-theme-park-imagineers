@@ -29,6 +29,27 @@ Handlebars.registerHelper("findAreaName", (value) => {
         return "Cinderella Castle";
     }
 });
+
+Handlebars.registerHelper("findType", (value) => {
+  switch (value) {
+    case 1:
+        return "Ride.";
+    case 2:
+        return "Restaurant";
+    case 3:
+        return "Show";
+    case 4:
+        return "Vendor";
+    case 5:
+        return "Character Meet";
+    case 6:
+        return "Animals";
+    case 7:
+        return "Game";
+    case 8:
+        return "Special Event";
+    }
+});
     
 
 imaginationFactory.loadData()
@@ -153,6 +174,12 @@ function populatePage(factoryData) {
     newDiv.innerHTML = attractionTemplate(factoryData);
     $("#attraction-column").append(newDiv);
     console.log('factoryData', factoryData);
+
+    $(".card").click(function(e){
+    console.log("seent");
+    $(".seent").addClass("hidden");
+    $(e.currentTarget).find(".seent").removeClass("hidden");
+});
     
 }
 
@@ -244,6 +271,7 @@ imaginationFactory.loadAttractions()
     });
     
 }
+
 
 
 
