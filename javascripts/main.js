@@ -38,6 +38,8 @@ function populatePage(factoryData) {
     newDiv.innerHTML = attractionTemplate(factoryData);
     $("#attraction-column").append(newDiv);
     $(".card").click(function(e){
+         var mapGridChildren = $(".grid-box-data");
+        mapGridChildren.removeClass("selected-border");
         $(".seent").addClass("hidden");
         $(e.currentTarget).find(".seent").removeClass("hidden");
     });
