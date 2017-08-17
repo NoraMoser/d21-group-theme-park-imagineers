@@ -40,6 +40,9 @@ function populatePage(factoryData) {
     $(".card").click(function(e){
         $(".seent").addClass("hidden");
         $(e.currentTarget).find(".seent").removeClass("hidden");
+        //START HERE FOR FRIDAY DOGG
+        console.log('$(e.currentTarget).find(".attr-copy").val();', $(e.currentTarget).find(".attr-copy").html());
+        
     });
 }
 
