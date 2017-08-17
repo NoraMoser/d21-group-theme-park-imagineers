@@ -24,10 +24,11 @@ body {
 	padding: 12px;
 }
 
-//Eric: Dropdown Time Select Radio Styling - EDIT
+//Eric: Dropdown Time Select Radio Styling
 
 #time-select-form { 
 	max-width: 200px;
+	margin: 10px 0;
 }
 .btn { 
 	//change coloring
@@ -106,7 +107,7 @@ body {
 #theme-logo {
 	height: 160px;
 	width: 190px;
-	margin-top: -15px;
+	margin-top: -40px;
 }
 
 .form-inline {
@@ -114,20 +115,13 @@ body {
 	display: inline;
 }
 
-#search-btn {
-	width: 65px;
-}
-
 #search-input {
-	width: 200px;
+	width: 600px;
+	margin-top: 2%;
 }
 
 #nav-bar {
 	background-color: $primary-color;
-}
-
-#search-btn {
-	background-color: $secondary-color;
 }
 
 //Footer
@@ -137,6 +131,7 @@ body {
 
 #footerStyle {
 	background-color: $primary-color;
+	padding: 20px 20px;
 }
 
 .hidden {
