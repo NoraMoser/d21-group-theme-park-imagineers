@@ -6,60 +6,12 @@ let Handlebars = require('hbsfy/runtime');
 let attractionTemplate = require("../templates/attractionlist.hbs");
 let moment =require("../lib/node_modules/moment/min/moment.min.js");
 let Fuse = require("../lib/node_modules/fuse.js/dist/fuse.min.js");
+let Search = require("../javascripts/searchfunctions.js");
+let HBShelper = require("../javascripts/hbshelpers.js");
+let Time = require("../javascripts/timemanip.js");
 
 var attractionsWithTimes = [];
 var attractionsPushedToDOM = [];
-
-Handlebars.registerHelper("findAreaName", (value) => {
-    let allAreas = imaginationFactory.getAreaArray();
-    let theArea = "";
-    for (let i = 0; i < allAreas.length; i++) {
-        if (value === allAreas[i].id) {
-            // console.log ("dataFromFactory[i].name", dataFromFactory[i].name);
-                theArea = allAreas[i].name;
-                // console.log("theArea", theArea);
-        }
-    }
-    return theArea;
-});
-
-imaginationFactory.loadTypes();
-
-Handlebars.registerHelper("findType", (value) => {
-    let allTypes = imaginationFactory.getAllTypes();
-    console.log (allTypes);
-    let theType = "";
-    for (let i = 0; i < allTypes.length; i++) {
-        if (value === allTypes[i].id) {
-            // console.log ("allTypes", allTypes[i]);
-                theType = allTypes[i].name;
-                // console.log("theArea", theArea);
-        }
-    }
-    return theType;
-});
-
-// Handlebars.registerHelper("findType", (value) => {
-//   switch (value) {
-//     case 1:
-//         return "Ride.";
-//     case 2:
-//         return "Restaurant";
-//     case 3:
-//         return "Show";
-//     case 4:
-//         return "Vendor";
-//     case 5:
-//         return "Character Meet";
-//     case 6:
-//         return "Animals";
-//     case 7:
-//         return "Game";
-//     case 8:
-//         return "Special Event";
-//     }
-// });
-    
 
 imaginationFactory.loadData()
 .then(
@@ -196,6 +148,11 @@ function populatePage(factoryData) {
 imaginationFactory.loadAttractions()
 .then(
     (dataFromFactory) => {
+        Search.storeData(dataFromFactory);        
+        
+        
+
+
         attractionsPushedToDOM = [];
         $("#attraction-column").html('');
         // console.log("attractions", dataFromFactory);
@@ -221,65 +178,29 @@ imaginationFactory.loadAttractions()
 
 //This is the search button using fuse module.
 $("#search-input").keypress(function(e){
-    if(e.which == 13) {
          $("#attraction-column").html('');
-        searchFunction();
-    }
-});
+       let result = Search.searchFunction($(this).val());
+        populatePage(result);
+        if (e.which == 13) {
+            $(this).blur();
+        } 
+    });
+
 
 $("#search-input").focus(function(e){
     $(this).val("");
 });
 
-$("#search-btn").click(function(e){
-    $("#attraction-column").html('');
-    searchFunction();
 
-});
-
-function searchFunction(){
-
-imaginationFactory.loadAttractions()
-.then(
-    (dataFromFactory) => {
-        // console.log("factory promise", dataFromFactory);
-        let searchTerm = $("#search-input").val();
-        console.log("searchTerm", searchTerm);
-        var options = {
-            tokenize: true,
-            shouldSort: true,
-            threshold: 0.0,
-            location: 0,
-            distance: 100,
-            maxPatternLength: 32,
-            minMatchCharLength: 1,
-            keys: [
-                "name"
-                   ]
-        };
-
-        var fusejs = new Fuse(dataFromFactory, options);
-        var result = fusejs.search(searchTerm);
-
-        console.log("factory data", dataFromFactory);
-        populatePage(result);
-        console.log("After PP", result);
-
-        
-        $(".grid-box-data").removeClass("selected-border"); 
-
-        for(let i = 0; i < result.length; i++){
-            $(`#grid--${result[i].area_id}`).addClass("selected-border");
-        }
-
-        result = [];
-
-    },
-    (reject) => {
-        console.log("something went wrong");
-    });
+// $("#search-input").keyup(function(e) {
     
-}
+// })
+
+
+
+
+    
+
 
 
 
