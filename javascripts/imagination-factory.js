@@ -19,6 +19,8 @@ Attractory.loadData = () => {
 };
 
 // Ted: Load the areas data from firebase
+let areasLoaded = [];
+
 Attractory.loadAreas = () => {
 	return new Promise ( function (resolve, reject) {
 		let dataLoader = new XMLHttpRequest();
@@ -27,11 +29,19 @@ Attractory.loadAreas = () => {
 
 		dataLoader.addEventListener("load", function () {
 			let data = JSON.parse(this.responseText);
+			areasLoaded = data;
+			console.log ("areasLoaded", areasLoaded); 
 			// console.log ("areas data on load", data);
 			resolve(data);
 		});
 	});
 };
+
+Attractory.getAreaArray = () => {
+	return areasLoaded;
+};
+
+let typesLoaded = [];
 
 Attractory.loadTypes = () => {
 	return new Promise ( function (resolve, reject) {
@@ -41,10 +51,15 @@ Attractory.loadTypes = () => {
 
 		dataLoader.addEventListener("load", function () {
 			let data = JSON.parse(this.responseText);
+			typesLoaded = data;
 			// console.log ("areas data on load", data);
 			resolve(data);
 		});
 	});
+};
+
+Attractory.getAllTypes = () => {
+	return typesLoaded;
 };
  
 
