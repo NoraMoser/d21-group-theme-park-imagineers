@@ -1,3 +1,13 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #2DB1FF;
+$secondary-color: #A5CD3A;
+$tertiary-color: #FFA50B;
+$quarternary-color: #eeeeee;
+
+body {
+	background-color: $quarternary-color;
+}
+
 #attraction-column-parent {
 	width: 100%;
 	height: 95vh;
@@ -6,7 +16,12 @@
 
 
 #map-grid {
-	background-color: #999999;
+	background-color: $quarternary-color;
+}
+
+//Attraction list styling
+.card {
+	padding: 12px;
 }
 
 //Eric: Dropdown Time Select Radio Styling - EDIT
@@ -75,14 +90,16 @@
 	border: 1px solid black;
 	height: 30vh;
 	width: 20vw;
+	padding: 20px;
+	text-align: center;
 	overflow: scroll;
 }
 
 .selected-border{
-	border: 1px solid red;
-	-webkit-box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
-	-moz-box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
-	box-shadow: inset 0px 0px 0px 10px rgba(255,0,0,1);
+	border: 1px solid $secondary-color;
+	-webkit-box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	-moz-box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	box-shadow: inset 0px 0px 0px 10px $secondary-color;
 }
 //Header
 
@@ -106,16 +123,20 @@
 }
 
 #nav-bar {
-	background-color: #2DB1FF;
+	background-color: $primary-color;
 }
 
 #search-btn {
-	color: #FFA50B;
+	background-color: $secondary-color;
 }
 
 //Footer
 #currentTime {
 	margin-left: 27%;
+}
+
+#footerStyle {
+	background-color: $primary-color;
 }
 
 .hidden {

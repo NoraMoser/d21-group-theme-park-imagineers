@@ -9,47 +9,56 @@ let Fuse = require("../lib/node_modules/fuse.js/dist/fuse.min.js");
 
 var attractionsWithTimes = [];
 var attractionsPushedToDOM = [];
-var attractionList = [];
 
 Handlebars.registerHelper("findAreaName", (value) => {
-  switch (value) {
-    case 1:
-        return "Main Street U.S.A.";
-    case 2:
-        return "Adventureland";
-    case 3:
-        return "Frontierland";
-    case 4:
-        return "Liberty Square";
-    case 5:
-        return "Fantasyland";
-    case 6:
-        return "Tomorrowland";
-    case 7:
-        return "Cinderella Castle";
+    let allAreas = imaginationFactory.getAreaArray();
+    let theArea = "";
+    for (let i = 0; i < allAreas.length; i++) {
+        if (value === allAreas[i].id) {
+            // console.log ("dataFromFactory[i].name", dataFromFactory[i].name);
+                theArea = allAreas[i].name;
+                // console.log("theArea", theArea);
+        }
     }
+    return theArea;
 });
 
+imaginationFactory.loadTypes();
+
 Handlebars.registerHelper("findType", (value) => {
-  switch (value) {
-    case 1:
-        return "Ride.";
-    case 2:
-        return "Restaurant";
-    case 3:
-        return "Show";
-    case 4:
-        return "Vendor";
-    case 5:
-        return "Character Meet";
-    case 6:
-        return "Animals";
-    case 7:
-        return "Game";
-    case 8:
-        return "Special Event";
+    let allTypes = imaginationFactory.getAllTypes();
+    console.log (allTypes);
+    let theType = "";
+    for (let i = 0; i < allTypes.length; i++) {
+        if (value === allTypes[i].id) {
+            // console.log ("allTypes", allTypes[i]);
+                theType = allTypes[i].name;
+                // console.log("theArea", theArea);
+        }
     }
+    return theType;
 });
+
+// Handlebars.registerHelper("findType", (value) => {
+//   switch (value) {
+//     case 1:
+//         return "Ride.";
+//     case 2:
+//         return "Restaurant";
+//     case 3:
+//         return "Show";
+//     case 4:
+//         return "Vendor";
+//     case 5:
+//         return "Character Meet";
+//     case 6:
+//         return "Animals";
+//     case 7:
+//         return "Game";
+//     case 8:
+//         return "Special Event";
+//     }
+// });
     
 
 imaginationFactory.loadData()
