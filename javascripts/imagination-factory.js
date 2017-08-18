@@ -7,17 +7,19 @@ let Attractory = {};
 let areasLoaded = [];
 let typesLoaded = [];
 
-// Ted: Load the areas data from firebase
+// (same as below -- getter)
+//Exposes types loaded to other modules
 Attractory.getAllTypes = () => {
 	return typesLoaded;
 };
 
-
+//Making area data available (this is a getter)
+//Exposes types loaded to other modules
 Attractory.getAreaArray = () => {
 	return areasLoaded;
 };
 
-
+//Tyler: Load the specific areas from firebase -- loads info need getter
 Attractory.loadAreas = () => {
 	return new Promise ( function (resolve, reject) {
 		let dataLoader = new XMLHttpRequest();
@@ -32,7 +34,7 @@ Attractory.loadAreas = () => {
 };
 
 
-//Tyler: Load the specific attractions from firebase
+//Tyler: Load the specific attractions from firebase- loads info need getter
 Attractory.loadAttractions = () => {
 	return new Promise ( function (resolve, reject) {
 		let attractionDataLoader = new XMLHttpRequest();
@@ -45,6 +47,7 @@ Attractory.loadAttractions = () => {
 	});
 };
 
+//Tyler: Load the specific types from firebase -- this loads the information and you need a getter
 
 Attractory.loadTypes = () => {
 	return new Promise ( function (resolve, reject) {

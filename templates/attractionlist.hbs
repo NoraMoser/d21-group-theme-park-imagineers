@@ -1,3 +1,6 @@
+{{!-- used handlebars to create the card with info from json -- 
+findType and findAreaName two registered helper functions. --}}
+
 {{#each this}}
 
     <div class="card">
@@ -8,6 +11,7 @@
     <section class="hidden seent">
         <p class="attr-desc">{{description}}</p> 
 
+{{!-- This is a loop that goes through specific times --}}
         {{#each times}}
         <span class="attr-desc">{{this}}</span>    
 		{{#unless @last}}
