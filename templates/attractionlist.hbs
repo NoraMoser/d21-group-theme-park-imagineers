@@ -1,13 +1,21 @@
 {{#each this}}
 
-	<div class="card">
-	<section id="attraction--{{@index}}" class="all-attractions">
-	<h5><a href="#" class="attr-name">{{name}} ({{findType type_id}})</a></h5>
-	<p class="<attr-copy></attr-copy>">({{findAreaName area_id}})</p>
-	</section>
-	<section class="hidden seent">
-		<p class="attr-desc">{{description}} {{times}}</p>
-	</section>
-	</div>
+    <div class="card">
+    <section id="attraction--{{@index}}" class="all-attractions">
+    <h5><a href="#" class="attr-name">{{name}} ({{findType type_id}})</a></h5>
+    <p class="<attr-copy></attr-copy>">({{findAreaName area_id}})</p>
+    </section>
+    <section class="hidden seent">
+        <p class="attr-desc">{{description}}</p> 
+
+        {{#each times}}
+        <span class="attr-desc">{{this}}</span>    
+		{{#unless @last}}
+		-
+    	{{/unless}}
+        {{/each}}
+
+    </section>
+    </div>
 
 {{/each}}

@@ -16,7 +16,11 @@ body {
 
 
 #map-grid {
-	background-color: $quarternary-color;
+	// background-color: $quarternary-color;
+	background-image: url("../images/ThemeMap.jpg");
+	background-size: cover;
+
+
 }
 
 //Attraction list styling
@@ -94,6 +98,17 @@ body {
 	padding: 20px;
 	text-align: center;
 	overflow: scroll;
+	opacity:0.0;
+	color:whitesmoke;
+
+}
+
+h3{
+		opacity:1;
+	}
+
+.grid-box-styling:hover{
+	opacity:0.8;
 }
 
 .selected-border{
@@ -101,6 +116,7 @@ body {
 	-webkit-box-shadow: inset 0px 0px 0px 10px $secondary-color;
 	-moz-box-shadow: inset 0px 0px 0px 10px $secondary-color;
 	box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	opacity:0.8;
 }
 //Header
 

@@ -33,15 +33,14 @@ function populateAreas(areasData) {
 	}
 }
 
-function populatePage(factoryData) {
+function populatePage(factoryData, headline) {
     let newDiv = document.createElement("div");
     newDiv.innerHTML = attractionTemplate(factoryData);
+    $("#headline").html(headline);
     $("#attraction-column").append(newDiv);
     $(".card").click(function(e){
         $(".seent").addClass("hidden");
         $(e.currentTarget).find(".seent").removeClass("hidden");
-        //START HERE FOR FRIDAY DOGG
-        console.log('$(e.currentTarget).find(".attr-copy").val();', $(e.currentTarget).find(".attr-copy").html());
         
     });
 }
@@ -89,7 +88,7 @@ function selectedTimeUmCrapTimesOrSumthin(time){
             }
         }
     } 
-    populatePage(attractionsPushedToDOM);   
+    populatePage(attractionsPushedToDOM, "Attractions at this time: ");   
 }
 //Return ID on area clicked and populate Attraction list
 $('#map-grid').click(function(event){
@@ -107,7 +106,7 @@ $('#map-grid').click(function(event){
                         attractionsPushedToDOM.push(dataFromFactory[i]);
                     }
                 }     
-                populatePage(attractionsPushedToDOM);
+                populatePage(attractionsPushedToDOM, "Attractions in area: ");
             },
             (reject) => {
                 console.log("something went wrong");
@@ -137,20 +136,47 @@ imaginationFactory.loadAttractions()
                 }
            }
         }     
-        populatePage(attractionsPushedToDOM);
+        populatePage(attractionsPushedToDOM, "Attractions in the next hour: ");
     },
     (reject) => {
         console.log("something went wrong");
     });
 
 //This is the search button using fuse module.
-$("#search-input").keypress(function(e){
+$("#search-input").keyup(function(e){
     $("#attraction-column").html('');
     let result = Search.searchFunction($(this).val());
-    populatePage(result);
+    populatePage(result, "Attractions from search: ");
     if (e.which == 13) {
         $(this).blur();
-    } 
+    }
+    if ($("#search-input").val() === ""){
+        imaginationFactory.loadAttractions()
+.then(
+    (dataFromFactory) => {
+        Search.storeData(dataFromFactory);        
+    
+        attractionsPushedToDOM = [];
+        $("#attraction-column").html('');
+        for (let i = 0; i < dataFromFactory.length; i++) {
+            if(dataFromFactory[i].times){
+                attractionsWithTimes.push(dataFromFactory[i]);
+            }
+        }
+        for (let k = 0; k < attractionsWithTimes.length; k++) {
+            for( let g = 0; g < attractionsWithTimes[k].times.length; g++ ){
+                if(moment(attractionsWithTimes[k].times[g], "hh:mm a").isBetween(moment(),moment().add(1,"h")) === true){
+                    attractionsPushedToDOM.push(attractionsWithTimes[k]);
+                    break;
+                }
+           }
+        }     
+        populatePage(attractionsPushedToDOM, "Attractions in the next hour: ");
+    },
+    (reject) => {
+        console.log("something went wrong");
+    });
+    }
 });
 $("#search-input").focus(function(e){
     $(this).val("");
