@@ -1,6 +1,7 @@
 "use strict";
 console.log ("main.js");
 
+//require so we can use 
 let imaginationFactory = require('../javascripts/imagination-factory.js');
 let Handlebars = require('hbsfy/runtime');
 let attractionTemplate = require("../templates/attractionlist.hbs");
@@ -32,7 +33,7 @@ function populateAreas(areasData) {
 		gridBoxes[i].setAttribute('style', `background-color: #${areasData[i].colorTheme}`);
 	}
 }
-
+//Workhorse function. Takes in array data and populates left column.
 function populatePage(factoryData, headline) {
     let newDiv = document.createElement("div");
     newDiv.innerHTML = attractionTemplate(factoryData);
@@ -46,7 +47,8 @@ function populatePage(factoryData, headline) {
 }
 
 
-// Ted: Calling loadAreas function to get the areas data.  Promise returns and then calls populateAreas.
+// Ted: Calling loadAreas function to get the areas data. 
+// Promise returns and then calls populateAreas.
 imaginationFactory.loadAreas()
 .then(
     (dataFromFactory) => {
@@ -76,7 +78,7 @@ $('.dropdown-radio').find('input').change(function() {
   
 });
 
-
+//used moments. check to see if attraction time
 function selectedTimeUmCrapTimesOrSumthin(time){
     attractionsPushedToDOM = [];
     $("#attraction-column").html('');

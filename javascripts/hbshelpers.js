@@ -4,6 +4,8 @@ let Handlebars = require('hbsfy/runtime');
 let imaginationFactory = require('../javascripts/imagination-factory.js');
 
 
+//Two helpers from handlebars template
+// need line 9 b/c we needed to load types immediately
 imaginationFactory.loadTypes();
 
 Handlebars.registerHelper("findAreaName", (value) => {
