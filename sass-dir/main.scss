@@ -19,6 +19,10 @@ body {
 	// background-color: $quarternary-color;
 	background-image: url("../images/ThemeMap.jpg");
 	background-size: cover;
+	-webkit-box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	-moz-box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	border-radius: 5px;
 
 
 }
@@ -26,6 +30,12 @@ body {
 //Attraction list styling
 .card {
 	padding: 12px;
+	-webkit-box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	-moz-box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	box-shadow: 26px 25px 37px -6px rgba(0,0,0,0.52);
+	margin-bottom: 7px;
+	border-radius: 5px;
+
 }
 
 //Eric: Dropdown Time Select Radio Styling
@@ -100,6 +110,7 @@ body {
 	overflow: scroll;
 	opacity:0.0;
 	color:whitesmoke;
+	border-radius: 5px;
 
 }
 
@@ -112,10 +123,10 @@ h3{
 }
 
 .selected-border{
-	border: 1px solid $secondary-color;
-	-webkit-box-shadow: inset 0px 0px 0px 10px $secondary-color;
-	-moz-box-shadow: inset 0px 0px 0px 10px $secondary-color;
-	box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	// border: 1px solid $secondary-color;
+	// -webkit-box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	// -moz-box-shadow: inset 0px 0px 0px 10px $secondary-color;
+	// box-shadow: inset 0px 0px 0px 10px $secondary-color;
 	opacity:0.8;
 }
 //Header
@@ -148,8 +159,15 @@ h3{
 #footerStyle {
 	background-color: $primary-color;
 	padding: 20px 20px;
+	margin-top: 5px;
 }
 
 .hidden {
 	display:none;	
 }
+
+#grid--empty {
+	color:whitesmoke;
+	background-color: $primary-color;
+}
+
