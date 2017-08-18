@@ -13,14 +13,6 @@ let Time = require("../javascripts/timemanip.js");
 var attractionsWithTimes = [];
 var attractionsPushedToDOM = [];
 
-imaginationFactory.loadData()
-.then(
-    (dataFromFactory) => {
-        // console.log("factory promise", dataFromFactory);
-    },
-    (reject) => {
-        console.log("something went wrong");
-    });
 
 
 
